@@ -17,19 +17,47 @@
     	<property name="rootLoggerLevel" value="FINE" />
     	<property name="printedLoggerLevel" value="FINE"/>
     </bean>
+    
+    <!--load sport.properties to grab properties from file-->
+    <context:property-placeholder location="classpath:sport.properties"/>
 	
+	<!--Define the depency-->
+	<bean id="myFortune"
+		class="com.andy.springpractice.HappyFortuneService">
+		</bean>
+		
+		<bean id="myRandomFortune"
+		class="com.andy.springpractice.RandomFortuneService">
+		</bean>
+		
     <!-- Define your beans here -->
     
  	<bean id="bballCoach"
- 		class="com.andy.springpractice.BaseballCoach">	 		
+ 		class="com.andy.springpractice.BaseballCoach">	 	
+ 		
+ 		<!--setup constructor injection for baseball coach-->
+ 		<constructor-arg ref="myRandomFortune" />
  	</bean>
  	
  	<bean id="tCoach"
- 		class="com.andy.springpractice.TrackCoach">	 		
+ 		class="com.andy.springpractice.TrackCoach">	 
+ 		<constructor-arg ref="myRandomFortune" />		
  	</bean>
  	
  	<bean id="boxCoach"
- 		class="com.andy.springpractice.BoxingCoach">	 		
+ 		class="com.andy.springpractice.BoxingCoach">	
+ 		<constructor-arg ref="myRandomFortune" /> 		
+ 	</bean>
+ 	
+ 	<bean id="cCoach"
+ 		class="com.andy.springpractice.CricketCoach">	
+ 		
+ 		<!--setter injection-->
+ 		<constructor-arg ref="myRandomFortune" />
+ 		<!--literal values injection-->
+ 		<property name="emailAddress" value="${foo.email}" /> 	
+ 		<property name="team" value="${foo.team}" /> 
+ 				
  	</bean>
     
 </beans>
