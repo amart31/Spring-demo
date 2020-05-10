@@ -3,6 +3,7 @@ package com.andy.springpractice;
 public class TrackCoach implements Coach {
 	
 	private RandomFortuneService randomFortuneService;
+	private HappyFortuneService happyFortuneService;
 	
 	public TrackCoach() {
 		
@@ -12,6 +13,9 @@ public class TrackCoach implements Coach {
 		this.randomFortuneService = randomFortuneService;
 	}
 
+	TrackCoach(HappyFortuneService happyFortuneService) {
+		this.happyFortuneService = happyFortuneService;
+	}
 	@Override
 	public String getDailyWorkout() {
 		return "run 30 laps daily on the track";
@@ -19,7 +23,18 @@ public class TrackCoach implements Coach {
 
 	@Override
 	public String getDailyFortune() {
-		return randomFortuneService.getFortune();
+		return happyFortuneService.getFortune();
+	}
+	
+	//add an init method(custom hook)
+	public void doMyStartupStuff() {
+		System.out.println("TrackCoach: inside method doMyStartupStuff" );
+	}
+	
+	
+	//add a destroy method (custom hook)
+	public void doMyCleanupStuff() {
+		System.out.println("TrackCoach: inside method doMyCleanupStuff" );
 	}
 
 }

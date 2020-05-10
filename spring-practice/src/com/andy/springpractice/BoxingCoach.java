@@ -24,5 +24,16 @@ public class BoxingCoach implements Coach{
 		return randomFortuneService.getFortune();
 	}
 	
+	//add an init method(custom hook)
+		public void doMyStartupStuff() {
+			System.out.println("BoxingCoach: inside method doMyStartupStuff" );
+		}
+		
+		
+		//add a destroy method (custom hook)
+		public void doMyCleanupStuff() {
+			System.out.println("BoxingCoach: inside method doMyCleanupStuff" );
+		}
+	
 
 }
