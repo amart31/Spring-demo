@@ -16,6 +16,11 @@
     	<property name="rootLoggerLevel" value="FINEST" />
     	<property name="printedLoggerLevel" value="FINEST"/>
     </bean>
+    
+    	<!-- Bean custom processor to handle calling destroy methods on prototype scoped beans -->
+        <bean id="customProcessor"
+    		class="com.andy.springpractice.MyCustomProcesor">
+    		</bean>
 	
     <!-- Define your beans here -->
     
@@ -41,7 +46,8 @@
  	<bean id="bCoach"
  		class="com.andy.springpractice.BoxingCoach"
  		init-method="doMyStartupStuff"
- 		destroy-method="doMyCleanupStuff">
+ 		destroy-method="destroy"
+ 		scope="prototype">
  		
  		
  		<constructor-arg ref="myRandomFortune" />

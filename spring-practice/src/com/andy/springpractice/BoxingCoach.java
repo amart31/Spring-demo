@@ -1,6 +1,8 @@
 package com.andy.springpractice;
 
-public class BoxingCoach implements Coach{
+import org.springframework.beans.factory.DisposableBean;
+
+public class BoxingCoach implements Coach, DisposableBean{
 	
 	//private var 
 	private RandomFortuneService randomFortuneService;
@@ -29,10 +31,20 @@ public class BoxingCoach implements Coach{
 			System.out.println("BoxingCoach: inside method doMyStartupStuff" );
 		}
 		
+		/*
 		
 		//add a destroy method (custom hook)
 		public void doMyCleanupStuff() {
 			System.out.println("BoxingCoach: inside method doMyCleanupStuff" );
+		}
+		
+		*/
+
+		
+		// add a destroy method
+		@Override
+		public void destroy() throws Exception {
+			System.out.println("boxingCoach: inside method doMyCleanupStuffYoYo");		
 		}
 	
 
