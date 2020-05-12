@@ -1,8 +1,7 @@
 package com.andy.springpractice;
 
-public interface Coach {
+public interface FortuneInterface {
 	
-	public String getDailyWorkout();
 	public String getFortune();
 
 }
