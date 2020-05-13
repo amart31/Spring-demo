@@ -1,6 +1,6 @@
 package com.andy.springpractice;
 
-public interface FortuneInterface {
+public interface FortuneService {
 	
 	public String getFortune();
 

@@ -1,6 +1,7 @@
 package com.andy.springpractice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
@@ -9,12 +10,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class TennisCoach implements Coach {
 	
-	private HappyFortuneService happyFortuneService;
+	//use the qualifier annotation with the bean id of the service you want to use
+	//coding to an interface
+	@Autowired
+	@Qualifier("happyFortuneService")
+	private FortuneService FortuneService;
 	
+	//define a default a constructor 
+	public TennisCoach() {
+	}
+	
+	/*
+	//define setter method for injection
+	@Autowired
+	public void setHappyFortuneService(HappyFortuneService fortuneService) {
+		happyFortuneService = fortuneService;
+		System.out.println("Inside setFortuneService()");
+
+	}
+	
+	
+	//define a constructor injection
 	@Autowired
 	public TennisCoach(HappyFortuneService fortuneService) {
 		happyFortuneService = fortuneService;
 	}
+	
+	*/
 
 	@Override
 	public String getDailyWorkout() {
@@ -23,7 +45,7 @@ public class TennisCoach implements Coach {
 	
 	@Override
 	public String getFortune() {
-		return happyFortuneService.getFortune();
+		return FortuneService.getFortune();
 	}
 
 }

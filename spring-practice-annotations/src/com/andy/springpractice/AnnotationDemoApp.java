@@ -2,6 +2,7 @@ package com.andy.springpractice;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 public class AnnotationDemoApp {
 
 	public static void main(String[] args) {

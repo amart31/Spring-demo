@@ -3,34 +3,35 @@ package com.andy.springpractice;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BaseballCoach implements Coach {
-	
-	private HappyFortuneService happyFortuneService;
-	
 	@Autowired
+	@Qualifier("randomFortuneService")
+	private FortuneService FortuneService;
+	
+	public BaseballCoach() {
+		
+	}
+	
+	/*
 	public BaseballCoach(HappyFortuneService fortuneService) {
 		happyFortuneService = fortuneService;
 	}
+	
+	*/
 	
 	private String[] workouts = {"batting cage", "infield work", "weight room",
 			"intensity work", "agility work", "game drills"
 	};
 	
-	private String[] fortunes = {"good", "lucky", "careful", "unlucky"
-	};
+	private Random r= new Random();
 	
-	Random r= new Random();
+	private int randomString = r.nextInt(workouts.length);
 	
-	int randomString = r.nextInt(workouts.length);
-	
-	int randomFortune = r.nextInt(fortunes.length);
-	
-	String fortune = fortunes[randomFortune];
-	
-	String workout = workouts[randomString];
+	private String workout = workouts[randomString];
 	
 
 	@Override
@@ -43,7 +44,7 @@ public class BaseballCoach implements Coach {
 	@Override
 	public String getFortune() {
 		
-		return "Today is your " + fortune + " day";
+		return FortuneService.getFortune();
 	}
 
 }
