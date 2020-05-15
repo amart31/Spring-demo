@@ -1,7 +1,11 @@
 package com.andy.springpractice;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -16,6 +20,19 @@ public class TennisCoach implements Coach {
 	@Qualifier("happyFortuneService")
 	private FortuneService FortuneService;
 	
+	//define init method
+	@PostConstruct
+	public void doMyStartupstuf() {
+		System.out.println("Inside doStartUpStuff");
+	}
+	
+	
+	//define destroy method
+	@PreDestroy
+	public void doMyCleanupstuf() {
+		System.out.println("Inside doCLEANtUpStuff");
+	}
+
 	//define a default a constructor 
 	public TennisCoach() {
 	}
